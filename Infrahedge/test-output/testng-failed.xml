@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="com.Infrahedge.ExceptionsTabScripts.IPPortfolioVaR">
+        <methods>
+          <include name="getCurrentTestMethodName"/>
+          <include name="fetch_IP_Portfolio_VaR"/>
+          <include name="tearDown"/>
+          <include name="closeApplication"/>
+          <include name="openApplication"/>
+        </methods>
+      </class> <!-- com.Infrahedge.ExceptionsTabScripts.IPPortfolioVaR -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
