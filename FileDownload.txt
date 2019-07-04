@@ -1,0 +1,705 @@
+.LOG
+
+WebDriver driver = new FirefoxDriver();
+Converting a child class object to super type is called Upcasting.
+In selenium, we use upcasting so that we can execute the same script on any browser.
+In selenium, we can upcast browser object to RemoteWebDriver, WebDriver, TakesScreenshot ,
+JavascriptExecutor etc, but a standard practice is to upcast to WebDriver interface.
+
+
+------------------------------------------------------------------
+Firefox Profile profile = new Firefox Profile()
+
+
+String Key ="browser.helpApps.neverAsk.saveToDisk";
+String Value="applications/zip";
+
+profile.setPreference(key,value);
+
+Firefox Options option = new Firefox Options();
+option.setProfile(profile)
+
+Webdriver driver = new Firefox Driver(option);
+
+------------------------------------------------------------------------
+
+System.setProperty("webdriver.chrome.driver","./driver/chromedriver.exe);
+FileInputStream fis= new FileInputStream("./inputdata/data.xlsx")
+Workbook wb= new XSSFWorkbook(fis)
+
+or we can create at run time using below
+
+Workbook wb= WorkbookFactory.create(new FileInputStream("./inputdata/data.xlsx");
+wb.getSheet("Anish").getRow(1).getCell(0).toString();
+
+Sheet sheet=wb.getSheet("Anish");
+Row row=sheet.getRow(0);
+Cell cell=row.getCell(0);
+
+String value=cell.toString();
+
+fis.close();
+
+
+FileOutputStream fos =new FileOutputStream(new File("./inputdata/data.xlsx"));
+wb.write(fos);
+fos.close();
+
+WorkbookFactory is a class from Apache POI
+Workbook is an interface from Apache POI
+XSSFWorkbook is also a class
+-------------------------------------------------------------------------------------
+
+java -jar jenikins.war throws Java.IOException and says Address alredy in use
+
+then use below
+ 
+(by default jenkins is hosted on 8080 port)
+nestat -ano-- it tells the service running status and port status
+taskkill /f /PID 2727--- to kill the task
+
+
+----------------------------------------------------------------------------------------
+
+
+
+WebDriver driver=new RemoteWebDriver(whichSystem, whichBrowser)// upcasting
+
+
+
+URL whichSystem= new URL("http://ipadress of node system:4444(selenimGridPort)/wd/hub")
+
+
+DesiredCapabilities whichBrowser= new DesiredCapabilities()
+
+whichBrowser.setBrowserName("chrome")
+
+
+batch file
+
+java -Dwebdriver.chrome.driver=chromedriver.exe -jar selenium-server-standalone-3.7.1.jar
+
+
+-------------------------------------------------------------------------------------------
+
+
+
+JavascriptExecutor jse= (JavaScript)driver;
+jse.executeScript("document.findElemenById('pwd')value='anish'")
+
+
+JavaScriptExecutor is used when Selenium Webdriver fails to click on any element due to some issue.
+
+JavaScriptExecutor provides two methods "executescript" & "executeAsyncScript" to handle.
+
+
+
+public void clickAgreeButton(WebDriver driver){
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+			executor.executeScript("arguments[0].click();", agreeButton);
+		}
+executeScript() method will take the reference of the element as arguments[0] along 
+with the method to be performed [in this case click()] and the reference should be provided thereafter]
+----------------------------------------------------------------------------------
+
+TakesScreenshot ts = (TakesScreenshot) driver;
+File srcFile = ts.getScreenshotAs(OutputType.FILE);
+File destFile = new File(".\\screenshots\\"+currentdate+"\\"+testname+"_screenshot.png");
+try {
+FileUtils.copyFile(srcFile, destFile);
+} catch (IOException e) {
+e.printStackTrace();
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// *[contains(text(),'selenium')];----generic xpath to handle StaleElementReferenceException
+
+//*[starts-with(text(),'selenium')]--to handle dynamic elements
+
+we can use independent and dependent concept as well when it completely changes
+
+Move to an independent element(find the xpath) and move mouse to expected element till its not highlighted in a single frame
+then find common parent (use /.. with independent xpath) and then write xpath of dependendent element like below
+
+independent xpath/..dependent xpath
+
+@FindBy(xpath = "//div['current-selections']//preceding-sibling::span[text()='Exposure']")
+	WebElement exposureTab;
+
+@FindBy(xpath = "//*[text()='Account Number' and @title='Account Number']")
+	WebElement accountNumber;
+
+--------------------------------------------------------------------------------------------
+
+
+Implicit wait:
+
+driver.manage().timeout().implicitlyWait(10,TimeUnit.Seconds);
+10 is of long type here
+
+Implicit wait will accept 2 parameters, the first parameter will accept the time as 
+an integer value and the second parameter will accept the time measurement in terms of SECONDS, MINUTES, MILISECOND, MICROSECONDS, NANOSECONDS, DAYS, HOURS, etc.
+
+NoSuchElementException	
+
+Explicit Wait:
+
+WebDriverWait wait = new WebDriverWait(driver,10);
+
+wait.until(ExpectedConditions.titleis("homePage"));
+
+The following are the Expected Conditions that can be used in Explicit Wait	
+alertIsPresent()
+elementSelectionStateToBe()
+elementToBeClickable()
+elementToBeSelected()
+frameToBeAvaliableAndSwitchToIt()
+invisibilityOfTheElementLocated()
+invisibilityOfElementWithText()
+presenceOfAllElementsLocatedBy()
+presenceOfElementLocated()
+textToBePresentInElement()
+textToBePresentInElementLocated()
+textToBePresentInElementValue()
+titleIs()
+titleContains()
+visibilityOf()
+visibilityOfAllElements()
+visibilityOfAllElementsLocatedBy()
+visibilityOfElementLocated()
+
+TimeOutException we get
+
+----------------------------------------------------------------------------------------------------------------
+
+
+Pom Page
+
+puclic class Login
+{
+
+@FindBy(xpath="")
+WebElement username;
+
+
+public login()
+{
+PageFactory.initElements(driver,this)
+
+}
+
+
+
+------------------------------------------------------------------------
+
+
+public class TestDataProvider
+
+{
+
+
+@DataProvider
+public object[][] datBank(){
+
+object[][] data=new object[2][2];
+
+data[0][0]="admin1"
+data[0][1]="user1"
+
+data[1][0] = "admin2";
+data[1][1] = "manager2";
+
+return data;
+
+}
+
+@Test(dataProvider="dataBank")
+
+public utiliseData(String un, String pwd){
+
+Reporter.log(pwd+":"un,true);
+
+}
+ row is number of iteration here its 2 so it will iterate twice
+column is number of variable to passed locally to test method which is utilising the data bank
+
+
+
+-------------------------------------------------------------------------------------------
+
+constructor overloading
+
+Actions action = new Actions(driver);// constructor overloading
+		new Actions(keyboard,mouse)
+
+Polymorphism in selenium
+
+Method Overloading 
+
+driver.swtichTo().frame(int index) : Switches the control of browser to the zero based integer index passed as a parameter.
+driver.swtichTo().frame(String nameOrId) : Switches the control of browser to ID or NAME attribute value passed as a parameter.
+driver.swtichTo().frame(WebElement element) : Switches the control of browser to identified WebElement referece passed as a parameter.
+
+Method overriding
+
+ All the methods present in webdriver is overridden, As it is an interface	
+
+Inheritance (firefoxdriver is inheriting from webdriver)
+
+Upcasting
+webdriver driver=new FirefoxDriver();
+
+-------------------------------------------------------------------
+
+@org.testng.annotations.BeforeClass
+	@Parameters("browsers")
+public void openApplication(String browsers) {
+
+	if(browsers.equalsIgnoreCase("chrome"))
+		{
+			driver = new ChromeDriver();
+		 
+		}
+
+		else {
+			
+			driver = new InternetExplorerDriver();
+		}
+
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+  <parameter name="browsers" value="chrome">
+    <classes>
+      <class name="com.Infrahedge.Scripts.ValidLogin"/>
+    </classes>
+    </parameter>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+@Test(groups="Regression")
+	public void testCaseOne()
+	{
+	System.out.println("Im in testCaseOne - And in Regression Group");
+	}
+	@Test(groups="Regression")
+	public void testCaseTwo(){
+	System.out.println("Im in testCaseTwo - And in Regression Group");
+	}
+
+
+<suite name="Sample Suite">
+  <test name="testing">
+  	<groups>
+      <run>
+        <include name="Regression"/>
+      </run>
+    </groups>
+    <classes>
+       <class name="com.example.group.groupExamples" />
+    </classes>
+  </test>
+</suite>
+
+@BeforeTest
+
+methods under this annotation will be executed prior to the first test case in the TestNG file.
+eg: opening browser
+
+@AfterTest
+
+methods under this annotation will be executed after all test cases in the TestNG file are executed.
+eg:closing
+
+@BeforeMethod
+
+methods under this annotation will be executed prior to each method in each test case.
+
+eg:like verifying the homepage title before actual functionality starts
+
+@AfterMethod
+
+methods under this annotation will be executed after each method in each test case.
+
+eg: going back to homepage
+
+
+@BeforeSuite: The annotated method will be run before all tests in this suite have run.
+
+eg: giving DB connection
+
+@AfterSuite: The annotated method will be run after all tests in this suite have run.
+
+eg: closing DB connection
+
+
+@BeforeClass: The annotated method will be run before the first test method in the current class is invoked.
+eg: Like loading driver executables
+
+@AfterClass: The annotated method will be run after all the test methods in the current class have been run.
+
+
+@BeforeGroups: The list of groups that this configuration method will run before. This method is guaranteed to run shortly before the first test method that belongs to any of these groups is invoked.
+
+@AfterGroups: The list of groups that this configuration method will run after. This method is guaranteed to run shortly after the last test method that belongs to any of these groups is invoked
+
+
+======================================================================================================
+
+
+// press f12 and goto console and give below command
+window.scrollBy(0,-500) 
+press enter
+
+
+puclic void ScrollDown()
+{
+
+JavascriptExecutor js = (JavascriptExecutor)driver; //upcast
+
+js.executeScript(""window.ScrollTo(0,500))
+
+}
+
+puclic void ScrollUp()
+{
+
+JavascriptExecutor js = (JavascriptExecutor)driver; //upcast
+
+js.executeScript("window.ScrollTo(0,-500)")
+
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Handling SSL certificates
+
+public void setUp() {
+		DesiredCapabilities capability = DesiredCapabilities.chrome();
+
+		// To Accept SSL certificate
+		capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true); 
+
+		// setting system property for Chrome browser
+		System.setProperty("webdriver.chrome.driver", "E:/chromedriver.exe");
+
+		// create Google Chrome instance and maximize it
+		driver = new ChromeDriver(capability);
+		driver.manage().window().maximize();
+	}
+
+
+public void setUp() {
+		//Creating new Firefox profile
+		FirefoxProfile profile = new FirefoxProfile();
+		profile.setAcceptUntrustedCertificates(true); 
+
+		profile.setAssumeUntrustedCertificateIssuer(false);
+
+		driver = new FirefoxDriver(profile); 
+		driver.manage().window().maximize();
+	}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1) Duplicity: List allows duplicate elements. Any number of duplicate elements can be inserted into the list without affecting the same existing values and their indexes.
+Set doesn’t allow duplicates. Set and all of the classes which implements Set interface should have unique elements.
+Map stored the elements as key & value pair. Map doesn’t allow duplicate keys while it allows duplicate values.
+
+2) Null values: List allows any number of null values.
+Set allows single null value at most.
+Map can have single null key at most and any number of null values.
+
+
+3) Order: List and all of its implementation classes maintains the insertion order.
+Set doesn’t maintain any order; still few of its classes sort the elements in an order such as LinkedHashSet maintains the elements in insertion order.
+Similar to Set Map also doesn’t stores the elements in an order, 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Assert:  Assert allows to check whether an element is on the page or not. 
+The test will stop on the step failed, if the asserted element is not available. 
+In other words, the test will terminate at the point where check fails.
+
+Verify: Verify command will check whether the element is on the page, 
+if it is not then the test will carry on executing.  
+In verification, all the commands are going to run guaranteed even if any of test fails.
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Both will delay the speed of execution.
+
+Thread.sleep () :  It will stop the current (java) thread for the specified period of time.  Its done only once
+
+It takes a single argument in integer format
+Ex: thread.sleep(2000)- It will wait for 2 seconds
+It waits only once at the command given at sleep
+
+
+SetSpeed () :  For specific amount of time it will stop the execution for every selenium command.
+It takes a single argument in integer format
+Ex: selenium.setSpeed(“2000”)- It will wait for 2 seconds
+Runs each command  after setSpeed delay by the number of milliseconds mentioned in set Speed
+
+
+Implicit Wait: Sets a timeout for all successive Web Element searches. 
+For the specified amount of time it will try looking for element again and again before throwing a NoSuchElementException.  
+It waits for elements to show up.
+
+Explicit Wait :  It is a one-timer, used for a particular search.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Explain how you can login into any site if it’s showing any authentication popup for password and username?
+
+Pass the username and password with url
+
+Syntax-http://username:password@url
+ex- http://creyate:tom@www.gmail.com
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+You can perform double click by using
+
+Syntax- 	Actions act = new Actions (driver);
+	act.doubleClick(webelement);
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q1. Why is String immutable in Java ?
+	
+Ans. 1. String Pool - When a string is created and if it exists in the pool, the reference of the existing string will be returned instead of creating a new object. 
+If string is not immutable, changing the value of one string with one reference will lead to the wrong value for the other references.
+
+Example -
+
+String str1 = "String1";
+String str2 = "String1"; // It doesn't create a new String and rather reuses the string literal from pool
+
+// Now both str1 and str2 pointing to same string object in pool, changing str1 will change it for str2 too
+
+2. To Cache its Hashcode - If string is not immutable, One can change its hashcode and hence it's not fit to be cached.
+
+3. Security - String is widely used as parameter for many java classes, e.g. network connection, opening files, etc. 
+Making it mutable might possess threats due to interception by the other code segment.
+
+
+Q2. What is the difference between String , StringBuilder and StringBuffer ?	
+	
+Ans. If the Object value will not change, use String Class because a String object is immutable.
+
+If the Object value can change and will only be modified from a single thread, use StringBuilder because StringBuilder is unsynchronized(means faster).
+
+If the Object value may change, and can be modified by multiple threads, use a StringBuffer because StringBuffer is thread safe(synchronized).
+
+
+Question 6. What Is The Difference Between Creating String As New() And Literal?
+
+Answer :
+
+When we create string with new() Operator, it’s created in heap and not added into string pool 
+while String created using literal are created in String pool itself which exists in PermGen area of heap.
+
+
+Question 7. What Is The Use Of The Finally Block? Is Finally Block In Java Guaranteed To Be Called? When Finally Block Is Not Called?
+
+Answer :
+
+Finally is the block of code that executes always. The code in finally block will execute even if an exception is occurred. Finally block is NOT called in following conditions
+
+If the JVM exits while the try or catch code is being executed, then the finally block may not execute. This may happen due to System.exit() call.
+
+
+Question 10. Difference Between Final, Finally And Finalize ?
+
+Answer :
+
+Final is used to apply restrictions on class, method and variable.
+Final class can’t be inherited, 
+final method can’t be overridden and 
+final variable value can’t be changed.
+
+Finally is used to place important code, it will be executed whether exception is handled or not.
+Finalize is used to perform clean up processing just before object is garbage collected.
+
+Question 9. Is Java A Pure Object Oriented Language?
+Answer : Java uses primitive data types and hence is not a pure object oriented language.
+
+Question 10. Are Arrays Primitive Data Types?
+
+Answer : In Java, Arrays are objects.
+
+Question 17. Why Is The Main Method Declared Static?
+
+Answer : main method is called by the JVM even before the instantiation of the class hence it is declared as static.
+
+Question 27. What Is The Access Scope Of A Protected Method?
+
+Answer : A protected method can be accessed by the classes within the same package or by the subclasses of the class in any package
+
+Static variables are class level variables and they can't be declared inside a method. If declared, the class will not compile.
+
+
+Abstract class vs Interface
+
+Type of methods: 
+Interface can have only abstract methods. Abstract class can have abstract and non-abstract methods. From Java 8, it can have default and static methods also.
+
+Final Variables: 
+Variables declared in a Java interface are by default final. An abstract class may contain non-final variables.
+
+Type of variables: 
+Abstract class can have final, non-final, static and non-static variables. Interface has only static and final variables.
+
+Implementation:
+ Abstract class can provide the implementation of interface. Interface can’t provide the implementation of abstract class.
+
+Inheritance vs Abstraction: 
+A Java interface can be implemented using keyword “implements” and abstract class can be extended using keyword “extends”.
+
+Multiple implementation: 
+An interface can extend another Java interface only, an abstract class can extend another Java class and implement multiple Java interfaces.
+
+Accessibility of Data Members: 
+Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Extent Report
+ its an open source reporting library for test automation
+ generates reports in pie chart format
+we can customize the log info using it
+we can attach screen shot using it
+
+
+
+// start reporters
+        ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extent.html");
+    
+        // create ExtentReports and attach reporter(s)
+        ExtentReports extent = new ExtentReports();
+        extent.attachReporter(htmlReporter);
+
+        // creates a toggle for the given test, adds all log events under it    
+        ExtentTest test = extent.createTest("MyFirstTest", "Sample description");
+
+        // log(Status, details)
+        test.log(Status.INFO, "This step shows usage of log(status, details)");
+
+        // info(details)
+        test.info("This step shows usage of info(details)");
+        
+        // log with snapshot
+        test.fail("details", MediaEntityBuilder.createScreenCaptureFromPath("screenshot.png").build());
+        
+        // test with snapshot
+        test.addScreenCaptureFromPath("screenshot.png");
+        
+        // calling flush writes everything to the log file
+        extent.flush();
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Cucumber
+	 its a tool which implements BDD framework
+	it uses simple english text which is easy to understand and readability is better 
+	it used Gherkin language which is simple english keywords
+		Given 
+		When
+		Then
+		And
+		As
+		But
+
+\"(.*)\"
+
+it involves basically three files to handle the BDD
+1. Feature Files(Scenario/Scenario Outline +Examples)
+2. StepDefinitions (Selenium+Java+Annotations)
+3. TestRunner(CucumberOptions)
+
+CucumberOptions
+		dryRun
+		Features
+		Glue
+		Strict
+		Monochrome
+		Plugin
+		tags
+			Scenario 
+			Scenario Outline
+		
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Git
+
+1. Go to project directory
+2. Git init (Initialise Git and that gives .git file which is hidden file)
+3. Git add Remote Origin <git url> (Establish the connection)
+4.Git status
+5. Git add . (to add the complete project)
+6. Git status
+7. Git commit -m "comments"
+7. Git push origin master (Master is branch name)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+WebService---
+Tranactions over network/HTTP calls in form of payloads like JSON or XML 
+This is also termed as Rest APIs, its light weight
+
+Representational State Transfer
+its a pattern/style unlike SOAP which is a protocol
+
+
+API---Application Programming Interface/ Back end testing
+Calling the files and APIs which are locally available in our system.
+JVM calls it like to Apache POI/Selenium jars etc using java code(Basically the dependencies which we have downloaded to make use of them)
+
+
+We have below commands/calls while dealing with APIs
+C----Create--Post
+R---Retrieve--Get
+U--Update---Put
+D--Delete--Delete
+
+URL(End Point URL)+Service URL=URI
+
+
+Rest-Assured is a Java-based library that is used to test RESTful Web Services. This library behaves like a headless Client to access REST web services. 
+We can create highly customize-able HTTP Requests to send to the Restful server. 
+This enables us to test a wide variety of Request combinations and in turn test different combinations of core business logic.
+
+Rest-Assured library also provides the ability to validate the HTTP Responses received from the server. 
+For e.g. we can verify the Status code, Status message, Headers and even the Body of the response. This makes Rest-Assured a very flexible library that can be used for testing.
+
+
+
+Selenium/QTP---front end testing
+
+GET is used to get information from the back end to show in the UI
+POST is used to add new information into the back end.
+PUT is used to update / replace any existing information.
+PATCH is for partial update
+DELETE is used to delete the information from the back end.
+		
+
+
+9:17 PM 5/5/2019
+
+9:44 PM 5/29/2019
+
+2:50 PM 6/24/2019
+
+3:37 PM 7/4/2019
