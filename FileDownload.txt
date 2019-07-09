@@ -410,8 +410,8 @@ public void setUp() {
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 1) Duplicity: List allows duplicate elements. Any number of duplicate elements can be inserted into the list without affecting the same existing values and their indexes.
-Set doesn’t allow duplicates. Set and all of the classes which implements Set interface should have unique elements.
-Map stored the elements as key & value pair. Map doesn’t allow duplicate keys while it allows duplicate values.
+Set doesnÂ’t allow duplicates. Set and all of the classes which implements Set interface should have unique elements.
+Map stored the elements as key & value pair. Map doesnÂ’t allow duplicate keys while it allows duplicate values.
 
 2) Null values: List allows any number of null values.
 Set allows single null value at most.
@@ -419,8 +419,8 @@ Map can have single null key at most and any number of null values.
 
 
 3) Order: List and all of its implementation classes maintains the insertion order.
-Set doesn’t maintain any order; still few of its classes sort the elements in an order such as LinkedHashSet maintains the elements in insertion order.
-Similar to Set Map also doesn’t stores the elements in an order, 
+Set doesnÂ’t maintain any order; still few of its classes sort the elements in an order such as LinkedHashSet maintains the elements in insertion order.
+Similar to Set Map also doesnÂ’t stores the elements in an order, 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -445,7 +445,7 @@ It waits only once at the command given at sleep
 
 SetSpeed () :  For specific amount of time it will stop the execution for every selenium command.
 It takes a single argument in integer format
-Ex: selenium.setSpeed(“2000”)- It will wait for 2 seconds
+Ex: selenium.setSpeed(Â“2000Â”)- It will wait for 2 seconds
 Runs each command  after setSpeed delay by the number of milliseconds mentioned in set Speed
 
 
@@ -457,7 +457,7 @@ Explicit Wait :  It is a one-timer, used for a particular search.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Explain how you can login into any site if it’s showing any authentication popup for password and username?
+Explain how you can login into any site if itÂ’s showing any authentication popup for password and username?
 
 Pass the username and password with url
 
@@ -504,7 +504,7 @@ Question 6. What Is The Difference Between Creating String As New() And Literal?
 
 Answer :
 
-When we create string with new() Operator, it’s created in heap and not added into string pool 
+When we create string with new() Operator, itÂ’s created in heap and not added into string pool 
 while String created using literal are created in String pool itself which exists in PermGen area of heap.
 
 
@@ -522,9 +522,9 @@ Question 10. Difference Between Final, Finally And Finalize ?
 Answer :
 
 Final is used to apply restrictions on class, method and variable.
-Final class can’t be inherited, 
-final method can’t be overridden and 
-final variable value can’t be changed.
+Final class canÂ’t be inherited, 
+final method canÂ’t be overridden and 
+final variable value canÂ’t be changed.
 
 Finally is used to place important code, it will be executed whether exception is handled or not.
 Finalize is used to perform clean up processing just before object is garbage collected.
@@ -559,10 +559,10 @@ Type of variables:
 Abstract class can have final, non-final, static and non-static variables. Interface has only static and final variables.
 
 Implementation:
- Abstract class can provide the implementation of interface. Interface can’t provide the implementation of abstract class.
+ Abstract class can provide the implementation of interface. Interface canÂ’t provide the implementation of abstract class.
 
 Inheritance vs Abstraction: 
-A Java interface can be implemented using keyword “implements” and abstract class can be extended using keyword “extends”.
+A Java interface can be implemented using keyword Â“implementsÂ” and abstract class can be extended using keyword Â“extendsÂ”.
 
 Multiple implementation: 
 An interface can extend another Java interface only, an abstract class can extend another Java class and implement multiple Java interfaces.
@@ -571,6 +571,31 @@ Accessibility of Data Members:
 Members of a Java interface are public by default. A Java abstract class can have class members like private, protected, etc.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Return statement clarification between catch and finally !!
+
+If the return in the try block is reached, it transfers control to the finally block, and the function eventually returns normally (not a throw).
+
+If an exception occurs, but then the code reaches a return from the catch block, control is transferred to the finally block and the function eventually returns normally (not a throw).
+
+In your example, you have a return in the finally, and so regardless of what happens, the function will return 34, because finally has the final (if you will) word.
+
+Although not covered in your example, this would be true even if you didn't have the catch and if an exception were thrown in the try block and not caught. By doing a return from the finally block, you suppress the exception entirely
+
+
+int absorbeTheValue() {
+    try {
+        int a = 10/0;
+        if (a > 0) return 4;
+    } catch(Exception e) {
+        return 45;
+    } finally {
+        return 34;
+    }
+}    
+
+
+Output is : 34 (Always final block returns the value)
+----------------------------------------------------------------------------------------------------------------------------------------
 
 Extent Report
  its an open source reporting library for test automation
