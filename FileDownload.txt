@@ -544,6 +544,56 @@ Question 27. What Is The Access Scope Of A Protected Method?
 
 Answer : A protected method can be accessed by the classes within the same package or by the subclasses of the class in any package
 
+-------------------------------------------------------------------------------------------------------------------------------
+
+Checked and Unchecked Exceptions
+
+**Any Class which extends Exceptions class directly or indirectly falls under Checked Exceptions category
+**Any Class which extends RuntimeExceptions class directly or indirectly falls under UnChecked Exceptions categor
+
+Examples:
+// To define custome checked exception we need to use like below
+public class UserDefinedException extends Exception {
+
+	public UserDefinedException(String Str) {
+		super(str);
+		
+	}
+	
+	// class to imlement above custom exception
+	
+	public class UserDefinedDemo  {
+
+	
+		public static void main(String args[]) throws UserDefinedException  // if we dont use throws here compiler strictly asks 											to add try and catch block
+		{ 
+			
+			throw new UserDefinedException("string not found"); 
+		}
+		
+**Either we can use try catch or throws keyword to make it a checked exception
+
+// Custom unchecked exception
+
+public class UserDefinedException extends RuntimeException {
+
+	public UserDefinedException(String str) {
+		super(str);
+		
+	}
+}
+
+// class to imlement above custom Unchecked exception
+
+public class UserDefinedDemo  {
+	
+		public static void main(String args[]) 
+		{ 
+			
+			throw new UserDefinedException("string not found"); 
+		}
+-----------------------------------------------------------------------------------------------------------------------------------
+
 Static variables are class level variables and they can't be declared inside a method. If declared, the class will not compile.
 
 
