@@ -1076,7 +1076,29 @@ m.getGreet();
 
 
 
+Override vs overload: Overloading involves defining multiple methods in a class with the same name but different parameters, while overriding occurs when a subclass provides a specific implementation for a method defined in its superclass.
 
+ 2️⃣ Methods that cannot be override: Constructors and static methods cannot be overloaded in Java.
+
+3️⃣ Static block vs instance block: Static blocks are used to initialize static variables and are executed only once when the class is loaded, whereas instance blocks are executed each time an instance of the class is created.
+
+4️⃣ Static vs non-static: Static members belong to the class itself, while non-static members belong to instances of the class.
+
+5️⃣ Encapsulation: Encapsulation is the practice of bundling the data (variables) and methods that operate on the data into a single unit (class). It helps in data hiding and abstraction.
+
+6️⃣ Abstract vs interfaces: Abstract classes can have both abstract and concrete methods, while interfaces can only have abstract methods. Classes can implement multiple interfaces, but can only extend one abstract class.
+
+7️⃣ Inheritance: Inheritance allows a class to inherit properties and behavior from another class. It promotes code reusability and supports the concept of "is-a" relationship.
+
+8️⃣ Type casting: Type casting is the process of converting one data type into another. In Java, it can be done implicitly (e.g., widening conversion) or explicitly (e.g., narrowing conversion).
+
+ 9️⃣ StringBuffer vs StringBuilder: Both classes are used to manipulate strings, but StringBuffer is synchronized (thread-safe) whereas StringBuilder is not.
+
+🔟 Why string is immutable: Strings are immutable in Java for performance, security, and synchronization reasons.
+
+1️⃣1️⃣ Exception handling: Exceptions in Java are handled using try, catch, and finally blocks. Try-catch blocks are used to handle exceptions, and finally block is used to execute code regardless of whether an exception occurs or not.
+
+1️⃣2️⃣ Try-catch without catch block: Yes, you can write a try-catch block without a catch block, but you must include either a finally block or both catch and finally blocks.
 
 
 
